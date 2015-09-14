@@ -42,7 +42,10 @@ def     tri_selection(mylist, size):
    print mylist
          
 def	main():
-   file = open(sys.argv[1])
+   try:
+      file = open(sys.argv[1])
+   except:
+      return -1
    tmp = file.read()
    mylist = tmp.split(' ')
    size = len(mylist)
