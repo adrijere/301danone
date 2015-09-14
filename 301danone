@@ -19,27 +19,19 @@ def     checkArgs(mylist):
    return 0
 
 def     tri_selection(mylist, size):
-   i = 0
-   cpt = 0
-   while (i != (size - 1)):
+   cpt = 1
+   for i in range(1, size - 1):
       mini = i
-      while (i + 1 != size):
-         j = i + 1
-         print "J : ", mylist[j]
-         print "I : ", mylist[i]
-         print "my liste : ", mylist
-         print "----"
-         if (mylist[j] < mylist[i]):
+      cpt += 1
+      for j in range(i + 1, size):
+         if (mylist[j] < mylist[mini]):
             mini = j
-            break
-         i += 1
-      if mini != i:
          cpt += 1
+      if (mini != i):
          tmp = mylist[mini]
          mylist[mini] = mylist[i]
          mylist[i] = tmp
-   print cpt
-   print mylist
+   print "tri par sélection :",cpt, "comparaisons" 
          
 def	main():
    try:
@@ -50,8 +42,8 @@ def	main():
    mylist = tmp.split(' ')
    size = len(mylist)
    if checkArgs(mylist) == 0:
-      tri_selection(mylist, size)
       affichage(size)
+      tri_selection(mylist, size)
 
 if __name__ == '__main__':
    sys.exit(main())
