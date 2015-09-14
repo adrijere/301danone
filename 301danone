@@ -12,18 +12,42 @@ def     checkArgs(mylist):
    i = 0
    while (i != len(mylist)):
       try :
-         float(mylist[i])
+         mylist[i] = float(mylist[i])
          i += 1
       except:
          return -1
    return 0
 
+def     tri_selection(mylist, size):
+   i = 0
+   cpt = 0
+   while (i != (size - 1)):
+      mini = i
+      while (i + 1 != size):
+         j = i + 1
+         print "J : ", mylist[j]
+         print "I : ", mylist[i]
+         print "my liste : ", mylist
+         print "----"
+         if (mylist[j] < mylist[i]):
+            mini = j
+            break
+         i += 1
+      if mini != i:
+         cpt += 1
+         tmp = mylist[mini]
+         mylist[mini] = mylist[i]
+         mylist[i] = tmp
+   print cpt
+   print mylist
+         
 def	main():
    file = open(sys.argv[1])
    tmp = file.read()
    mylist = tmp.split(' ')
    size = len(mylist)
    if checkArgs(mylist) == 0:
+      tri_selection(mylist, size)
       affichage(size)
 
 if __name__ == '__main__':
