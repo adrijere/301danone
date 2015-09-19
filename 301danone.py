@@ -32,7 +32,22 @@ def     tri_selection(mylist, size):
          mylist[mini] = mylist[i]
          mylist[i] = tmp
    print "tri par sélection :",cpt, "comparaisons" 
-         
+
+
+def     tri_insertion(mylist, size):
+   count = 1
+   for i in range(1, size - 1):
+      x = mylist[i]
+      j = i
+      while j > 0:
+         if mylist[j - 1] > x:
+            mylist[j] = mylist[j - 1]
+         j = j - 1
+         count += 1
+      mylist[j] = x
+   print "tri par insertion :", count, "comparaisons"
+
+
 def	main():
    try:
       file = open(sys.argv[1])
@@ -44,6 +59,7 @@ def	main():
    if checkArgs(mylist) == 0:
       affichage(size)
       tri_selection(mylist, size)
+      tri_insertion(mylist, size)
 
 if __name__ == '__main__':
    sys.exit(main())
