@@ -37,7 +37,6 @@ def     tri_selection(mylist, size):
 
 def     tri_insertion(mylist, size):
    tmplist = list(mylist)
-#   print (tmplist)
    count = 1
    for i in range(1, size, 1):
       x = tmplist[i]
@@ -62,6 +61,16 @@ def     tri_a_bulles(mylist, size):
          count += 1
    print "tri a bulles :", count, "comparaisons"
 
+def     checkSpace(mylist):
+   x = 0
+   while (x != len(mylist) - 1):
+      if (mylist[x] == "" or mylist[x] == " "):
+         mylist.remove(mylist[x])
+         x -= 1
+         continue
+      x += 1
+   return mylist
+
 def	main():
    try:
       file = open(sys.argv[1])
@@ -69,12 +78,13 @@ def	main():
       return -1
    tmp = file.read()
    mylist = tmp.split(' ')
+   mylist = checkSpace(mylist)
    size = len(mylist)
    if checkArgs(mylist) == 0:
       affichage(size)
       tri_selection(mylist, size)
       tri_insertion(mylist, size)
       tri_a_bulles(mylist, size)
-
+      
 if __name__ == '__main__':
    sys.exit(main())
