@@ -1,4 +1,4 @@
-#!/usr/bin/env python2.7
+#!/usr/bin/python
 # -*- coding: utf-8 -*-
 
 import sys
@@ -37,7 +37,6 @@ def     tri_selection(mylist, size):
 
 def     tri_insertion(mylist, size):
    tmplist = list(mylist)
-#   print (tmplist)
    count = 1
    for i in range(1, size, 1):
       x = tmplist[i]
