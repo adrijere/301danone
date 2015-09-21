@@ -19,7 +19,7 @@ def     checkArgs(mylist):
    return 0
 
 def     tri_selection(mylist, size):
-   tmplist = mylist
+   tmplist = list(mylist)
    cpt = 1
    for i in range(1, size - 1):
       mini = i
@@ -30,14 +30,14 @@ def     tri_selection(mylist, size):
          cpt += 1
       if (mini != i):
          tmp = tmplist[mini]
-         mylist[mini] = tmplist[i]
-         mylist[i] = tmp
+         tmplist[mini] = tmplist[i]
+         tmplist[i] = tmp
    print "tri par sélection :",cpt, "comparaisons" 
 
 
 def     tri_insertion(mylist, size):
-   tmplist = mylist
-   print (tmplist)
+   tmplist = list(mylist)
+#   print (tmplist)
    count = 1
    for i in range(1, size, 1):
       x = tmplist[i]
@@ -50,7 +50,7 @@ def     tri_insertion(mylist, size):
    print "tri par insertion :", count, "comparaisons"
 
 def     tri_a_bulles(mylist, size):
-   tmplist = mylist
+   tmplist = list(mylist)
    n = size
    count = 0
    for i in range (n - 1, 0, -1):
@@ -72,8 +72,8 @@ def	main():
    size = len(mylist)
    if checkArgs(mylist) == 0:
       affichage(size)
-      #tri_selection(mylist, size)
-      #tri_insertion(mylist, size)
+      tri_selection(mylist, size)
+      tri_insertion(mylist, size)
       tri_a_bulles(mylist, size)
 
 if __name__ == '__main__':
