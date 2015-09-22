@@ -1,4 +1,4 @@
-#!/usr/bin/env python2.7
+#!/usr/bin/python
 # -*- coding: utf-8 -*-
 
 import sys
@@ -32,7 +32,7 @@ def     tri_selection(mylist, size):
          tmp = tmplist[mini]
          tmplist[mini] = tmplist[i]
          tmplist[i] = tmp
-   print "tri par sélection :",cpt, "comparaisons" 
+   print "tri par sélection :",cpt, "comparaisons"
 
 
 def     tri_insertion(mylist, size):
