@@ -4,8 +4,13 @@
 import sys
 from math import *
 
+count_quick_sort = 0
+
 def     affichage(size):
-   s = str(size) + " éléments"
+   if (size == 1):
+      s = str(size) + " élément"
+   else:
+      s = str(size) + " éléments"
    print s
 
 def     checkArgs(mylist):
@@ -71,6 +76,34 @@ def     checkSpace(mylist):
       x += 1
    return mylist
 
+def     partitionner(mylist, first, last, pivot):
+   global count_quick_sort
+   tmp = mylist[pivot]
+   mylist[pivot] = mylist[last]
+   mylist[last] = tmp
+   count_quick_sort += 1
+   j = first
+   for i in range(first, last - 1):
+      count_quick_sort += 1
+      if (mylist[i] <= mylist[last]):
+         tmp = mylist[i]
+         mylist[i] = mylist[j]
+         mylist[j] = tmp
+         j += 1
+   tmp = mylist[last]
+   mylist[last] = mylist[j]
+   mylist[j] = tmp
+   return (j)
+
+def     tri_rapide(mylist, first, last):
+   global count_quick_sort
+   count_quick_sort += 1
+   if (first < last):
+      pivot = (last - first) / 2
+      pivot = partitionner(mylist, first, last, pivot)
+      tri_rapide(mylist, first, pivot - 1)
+      tri_rapide(mylist, pivot + 1, last)
+
 def	main():
    try:
       file = open(sys.argv[1])
@@ -85,6 +118,8 @@ def	main():
       tri_selection(mylist, size)
       tri_insertion(mylist, size)
       tri_a_bulles(mylist, size)
+      tri_rapide(mylist, 0, len(mylist) - 1)
+      print "tri rapide :", count_quick_sort, "comparaisons"
       
 if __name__ == '__main__':
    sys.exit(main())
