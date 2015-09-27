@@ -134,6 +134,7 @@ def	main():
    try:
       file = open(sys.argv[1])
    except:
+      print "argument not valid"
       return -1
    tmp = file.read()
    mylist = tmp.split(' ')
