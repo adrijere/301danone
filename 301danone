@@ -39,18 +39,18 @@ def     tri_selection(mylist, size):
          tmplist[i] = tmp
    print "tri par sélection :",cpt, "comparaisons"
 
-
-def     tri_insertion(mylist, size):
-   tmplist = list(mylist)
+def     tri_insertion(tab, size):
    count = 1
-   for i in range(1, size, 1):
-      x = tmplist[i]
+   i = 1
+   while (i < size):
+      elem = tab[i]
       j = i
-      while j > 0 and tmplist[j - 1] > x:
-         tmplist[j] = tmplist[j - 1]
-         j -= 1
-         count += 1
-      tmplist[j] = x
+      count += 1
+      while (j > 0 and tab[j-1] > elem):
+         tab[j] = tab[j-1]
+         j = j - 1
+      tab[j] = elem
+      i += 1
    print "tri par insertion :", count, "comparaisons"
 
 def     tri_a_bulles(mylist, size):
@@ -64,7 +64,7 @@ def     tri_a_bulles(mylist, size):
             tmplist[j] = tmplist[j + 1]
             tmplist[j+1] = tmp
          count += 1
-   print "tri a bulles :", count, "comparaisons"
+   print "tri à bulles :", count, "comparaisons"
 
 def     checkSpace(mylist):
    x = 0
@@ -81,8 +81,8 @@ def     partitionner(mylist, first, last, pivot):
    tmp = mylist[pivot]
    mylist[pivot] = mylist[last]
    mylist[last] = tmp
-   count_quick_sort += 1
    j = first
+   count_quick_sort += 1
    for i in range(first, last - 1):
       count_quick_sort += 1
       if (mylist[i] <= mylist[last]):
@@ -97,7 +97,6 @@ def     partitionner(mylist, first, last, pivot):
 
 def     tri_rapide(mylist, first, last):
    global count_quick_sort
-   count_quick_sort += 1
    if (first < last):
       pivot = (last - first) / 2
       pivot = partitionner(mylist, first, last, pivot)
