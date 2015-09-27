@@ -47,10 +47,9 @@ def     tri_insertion(tab, size):
       elem = tab[i]
       j = i
       count += 1
-      y = 0
-      while (y < j and tab[j-1] > elem):
+      while (j > 0 and tab[j-1] > elem):
          tab[j] = tab[j-1]
-         y += 1
+         j = j - 1
          count += 1
       tab[j] = elem
       i += 1
@@ -75,6 +74,10 @@ def     checkSpace(mylist):
       if (mylist[x] == "" or mylist[x] == " "):
          mylist.remove(mylist[x])
          x -= 1
+         continue
+      if (mylist[x] == "\t"):
+         mylist.remove(mylist[x])
+         x-= 1
          continue
       x += 1
    return mylist
