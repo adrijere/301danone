@@ -5,6 +5,7 @@ import sys
 from math import *
 
 count_quick_sort = 0
+count_fusion_sort = 0
 
 def     affichage(size):
    if (size == 1):
@@ -46,9 +47,10 @@ def     tri_insertion(tab, size):
       elem = tab[i]
       j = i
       count += 1
-      while (j > 0 and tab[j-1] > elem):
+      y = 0
+      while (y < j and tab[j-1] > elem):
          tab[j] = tab[j-1]
-         j = j - 1
+         y += 1
          count += 1
       tab[j] = elem
       i += 1
@@ -104,6 +106,27 @@ def     tri_rapide(mylist, first, last):
       tri_rapide(mylist, first, pivot - 1)
       tri_rapide(mylist, pivot + 1, last)
 
+def     fusion(tab1,tab2):
+   global count_fusion_sort
+   if tab1==[] :
+      return tab2
+   if tab2==[] :
+      return tab1
+   if tab1[0] < tab2[0] :
+      count_fusion_sort += 1
+      return [tab1[0]] + fusion(tab1[1 :],tab2)
+   else :
+      count_fusion_sort += 1
+      return [tab2[0]] + fusion(tab1,tab2[1 :])
+
+def     tri_fusion(tab):
+   global count_fusion_sort
+   if len(tab) <= 1 :
+      return tab
+   tab1=[tab[x] for x in range(len(tab)//2)]
+   tab2=[tab[x] for x in range(len(tab)//2,len(tab))]
+   return fusion(tri_fusion(tab1),tri_fusion(tab2))
+
 def	main():
    try:
       file = open(sys.argv[1])
@@ -118,6 +141,8 @@ def	main():
       tri_selection(mylist, size)
       tri_insertion(mylist, size)
       tri_a_bulles(mylist, size)
+      tri_fusion(mylist)
+      print "tri fusion :", count_fusion_sort, "comparaisons"
       tri_rapide(mylist, 0, len(mylist) - 1)
       print "tri rapide :", count_quick_sort, "comparaisons"
       
